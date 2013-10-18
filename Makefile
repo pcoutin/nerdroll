@@ -1,0 +1,2 @@
+all:
+	nasm roll.nasm
