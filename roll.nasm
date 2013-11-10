@@ -1,16 +1,21 @@
-[BITS 16]      ; 16 bit code generation
-[ORG 0x7C00]   ; Origin location, whatever that means
+[BITS 16]
+[ORG 0x7C00]
 
 main:
 
+    ; zero the data segment.
     mov ax,0x0000
     mov ds,ax
-    mov si, HelloWorld
+
+    mov si, Start
     call PutStr
-    mov cx, 18h ; set how long the timer will run
+
+    mov cx, 18h
     call timer
+
     mov si, keybord
     call PutStr
+
     mov cx, 24h
     call timer
     call rickroll
@@ -39,7 +44,7 @@ PutStr:        ; Procedure label/start
     ret
 
 timer: ;bit more than a second
-    mov ah, 86h ;allocate cx please
+    mov ah, 86h
     mov dx, 0000h
     int 15h
     ret
@@ -210,7 +215,7 @@ dessert:
 
 
 
-HelloWorld db 'Starting MS-DOS...',13,10,13,10,13,10,'C:\>',0
+Start db 'Starting MS-DOS...',13,10,13,10,13,10,'C:\>',0
 keybord db 13,10,'Keyboard not found!',13,10,13,10,'Press any key to continue...',13,10,0
 
 nevers db 13,10,'NEVER GONNA ',0
